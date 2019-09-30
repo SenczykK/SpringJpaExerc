@@ -16,7 +16,7 @@ public class Aa {
 	private Long id;
 	
 	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="B_id")
+	@JoinColumn(name="Bb_id")
 	private Bb bb;
 
 	public Long getId() {

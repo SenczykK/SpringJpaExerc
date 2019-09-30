@@ -5,7 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example1.entity.A;
+import com.example1.entity.Aa;
 import com.example1.entity.B;
+import com.example1.entity.Bb;
 import com.example1.repositories.ARepository;
 
 @RestController
@@ -21,22 +23,32 @@ public class MainController {
 	@RequestMapping("/")
 	public String startPage() {
 		
-		A a = new A();
-		B b = new B();
+		Aa aa = new Aa();
+		Bb bb = new Bb();
 		
-		b.setId(Integer.toUnsignedLong(2));
-		a.setB_id(b);
+		//saveUniOneToOne(Integer.toUnsignedLong(20));
 		
-		aRepo.save(a);
 		return "Saved";
 	}
 	
 	@RequestMapping("/read")
 	public String readPage() {
 		
+		return "Value: ";
+	}
+	
+	public void saveUniOneToOne(Long B_id){
+		A a = new A();
+		B b = new B();
+		
+		b.setId(B_id);
+		a.setB_id(b);
+		
+		aRepo.save(a);
+	}
+	public void readUniOneToOne(Long id) {
 		A s = new A();
-		s = aRepo.getOne(Integer.toUnsignedLong(4));
+		s = aRepo.getOne(id);
 		System.out.println("S: "+s.getId());
-		return "Value: "+s.toString();
 	}
 }
